@@ -9,4 +9,6 @@ open). When you're writing libs that users might require sub parts with
 'libname/sub_part', then expand_path combined with say, rubygems, can lead to
 double requires. Lets not do that. :-)
 
+[1] http://github.com/smtlaissezfaire/using/
+
 TODO - replace me
