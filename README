@@ -1,0 +1,12 @@
+subload
+
+A handy dandy autoload / require / load helper for your rubies. Similar to
+using[1], but with a few differences of opinion, and a bit shorter.
+
+Basically, expand path is fine, up until a point. Sometimes there's no point
+(i.e. when the load path already contains most of the path you're trying to
+open). When you're writing libs that users might require sub parts with
+'libname/sub_part', then expand_path combined with say, rubygems, can lead to
+double requires. Lets not do that. :-)
+
+TODO - replace me
