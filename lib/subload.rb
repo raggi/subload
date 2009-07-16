@@ -6,17 +6,18 @@ module Subload
   }
 
   @default_mode = :autoload
-  class <<self; attr_accessor :default_mode; end
+  class <<self; attr_accessor :default_mode, :override_mode; end
 
   def subload_with(mode = nil)
     @_subload_mode = mode unless mode.nil?
-    MODES[@_subload_mode || Subload.default_mode]
+    MODES[Subload.override_mode || @_subload_mode || Subload.default_mode]
   end
 
   def subload(symbol, sub_path = nil, mode = nil)
     klass = self.instance_of?(Class) || self.instance_of?(Module)
     klass = klass ? self.name : self.class.name
     path = File.join(sub_path || Subload.to_path("#{klass}::#{symbol}"))
+    $stdout.puts [:subload, symbol, path, mode].inspect if $DEBUG
     subload_with(mode)[self, symbol, path]
   end
 

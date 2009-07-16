@@ -1,9 +1,4 @@
-begin
-  require 'minitest/unit'
-rescue LoadError
-  warn("Please install minitest, falling back to test/unit")
-  require "test/unit"
-end
+require "test/unit"
 
 $:.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 require "subload"
@@ -11,6 +6,12 @@ require "subload"
 class TestSubload < Test::Unit::TestCase
   # pretend we're in a libdir!
   $:.unshift File.expand_path(File.dirname(__FILE__))
+
+  def teardown
+    Subload.override_mode = nil
+    Subload.default_mode = :autoload
+    subload_with(false)
+  end
 
   subload :A
 
@@ -20,23 +21,21 @@ class TestSubload < Test::Unit::TestCase
     assert defined?(Al)
   end
 
-  subload :B, nil, :require
-
   def test_subload_require
+    subload :B, nil, :require
     assert defined?(B)
   end
 
-  subload :C, "test_subload/c.rb", :load
-
   def test_subload_load
+    subload :C, "test_subload/c.rb", :load
     assert defined?(C)
   end
 
-  subload_with(:require)
-  subload :D
-  subload_with(false)
-
   def test_subload_with
+    subload_with(:require)
+    subload :D
+    subload_with(false)
+
     assert_equal subload_with(false), subload_with
     assert_equal subload_with(:autoload), subload_with
 
@@ -52,5 +51,16 @@ class TestSubload < Test::Unit::TestCase
     subload_with(false)
   end
 
-  # TODO  tests for to_path
+  def test_override_mode
+    assert !defined?(F)
+    assert !defined?(F::Al)
+    assert !defined?(F::A)
+    Subload.override_mode = :require
+    subload_with(:autoload)
+    subload :F
+    assert defined?(F)
+    assert defined?(F::Al)
+    assert defined?(F::A)
+  end
+
 end
