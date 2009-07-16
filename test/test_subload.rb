@@ -22,12 +22,12 @@ class TestSubload < Test::Unit::TestCase
   end
 
   def test_subload_require
-    subload :B, nil, :require
+    subload :B, :mode => :require
     assert defined?(B)
   end
 
   def test_subload_load
-    subload :C, "test_subload/c.rb", :load
+    subload :C, :path => "test_subload/c.rb", :mode => :load
     assert defined?(C)
   end
 
