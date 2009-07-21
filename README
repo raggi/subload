@@ -69,3 +69,9 @@ Some Notes:
   custom class defintions, and the other will contain generated definitions.
   Using a custom loader, one can then utilise a single subload statement to
   correctly load both files.
+
+TODO Chaotic Overloading
+
+Consider vertical vs. horizontal delegation rules and use cases for new
+loaders in non-framework libraries that perform custom loads such that it is
+easy to say "invoke the current load mode with the following options".

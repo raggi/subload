@@ -63,4 +63,9 @@ class TestSubload < Test::Unit::TestCase
     assert defined?(F::A)
   end
 
+  def test___name__
+    assert_equal("Class", Class.__name__)
+    assert_equal("Module", Module.__name__)
+  end
+
 end

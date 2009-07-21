@@ -51,7 +51,7 @@ module Subload
   def subload(symbol, options = {})
     sub_path, mode = *options.values_at(:path, :mode)
     klass = self.instance_of?(Class) || self.instance_of?(Module)
-    klass = klass ? self.name : self.class.name
+    klass = klass ? self.__name__ : self.class.__name__
     path = File.join(sub_path || Subload.to_path("#{klass}::#{symbol}"))
     path = File.expand_path(path) if options[:expand_path]
     $stdout.puts [:subload, symbol, path, mode].inspect if $DEBUG
@@ -79,5 +79,19 @@ module Subload
 end
 
 class Object
+  # Make sure we hit the top level, objects, classes, etc. We do not make this
+  # private, because source loading may want to not be, for more complex
+  # loading environments. External invocation is not recommended without clear
+  # reasoning.
   include Subload
+end
+
+class Module
+  # If anyone can think of a better way to do this, please, I'm all ears.
+  # I'd like syntax for class_name?(object || klass) # => Symbol || String
+  if defined?(__name__)
+    warn("Subload clobber Class#__name__ from: #{method(:__name__).inspect}")
+  else
+    alias __name__ name
+  end
 end
