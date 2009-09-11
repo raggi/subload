@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = %q{An autoload/require/custom loader wrapper}
   s.email = %q{raggi@rubyforge.org}
   s.extra_rdoc_files = ["README"]
-  s.files = ["README", "examples/a.rb", "examples/a/foo.rb", "examples/a/foo/bar.rb", "examples/a/foo/baz.rb", "examples/rails/loader.rb", "lib/subload.rb", "test/test_subload.rb", "test/test_subload/a.rb", "test/test_subload/b.rb", "test/test_subload/c.rb", "test/test_subload/d.rb", "test/test_subload/e.rb", "test/test_subload/f.rb", "test/test_subload/f/a.rb"]
+  s.files = ["README", "Rakefile", "examples/a.rb", "examples/a/foo.rb", "examples/a/foo/bar.rb", "examples/a/foo/baz.rb", "examples/rails/loader.rb", "lib/subload.rb", "test/test_subload.rb", "test/test_subload/a.rb", "test/test_subload/b.rb", "test/test_subload/c.rb", "test/test_subload/d.rb", "test/test_subload/e.rb", "test/test_subload/f.rb", "test/test_subload/f/a.rb"]
   s.homepage = %q{http://libraggi.rubyforge.org/subload}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Subload", "--main", "README"]
   s.require_paths = ["lib"]
