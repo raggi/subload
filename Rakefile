@@ -25,7 +25,7 @@ gem_task.define
 Rake::Task[:clobber].enhance [:clobber_package]
 
 require 'rake/testtask'
-Rake::TestTask.new(:spec) do |t|
+Rake::TestTask.new(:test) do |t|
   t.test_files = spec.test_files
   t.ruby_opts = ['-rubygems'] if defined? Gem
   t.warning = true
@@ -70,7 +70,7 @@ task :gemspec => spec.filename
 
 task spec.filename do
   spec.files = manifest
-  spec.test_files = manifest.grep(/(?:spec|test)\/*.rb/)
+  spec.test_files = FileList['{test,spec}/**/{test,spec}_*.rb']
   open(spec.filename, 'w') { |w| w.write spec.to_ruby }
 end
 

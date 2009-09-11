@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{libraggi}
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{An autoload/require/custom loader wrapper}
+  s.test_files = ["test/test_subload.rb"]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
