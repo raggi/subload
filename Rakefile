@@ -19,8 +19,14 @@ end
 
 def manifest; @manifest ||= `git ls-files`.split("\n").reject{|s|s=~/\.gemspec$|\.gitignore$/}; end
 
-require 'rake/gempackagetask'
-def gem_task; @gem_task ||= Rake::GemPackageTask.new(spec); end
+@gem_package_task_type = begin
+  require 'rubygems/package_task'
+  Gem::PackageTask
+rescue LoadError
+  require 'rake/gempackagetask'
+  Rake::GemPackageTask
+end
+def gem_task; @gem_task ||= @gem_package_task_type.new(spec); end
 gem_task.define
 Rake::Task[:clobber].enhance [:clobber_package]
 
@@ -31,9 +37,15 @@ Rake::TestTask.new(:test) do |t|
   t.warning = true
 end unless spec.test_files.empty?
 
-require 'rake/rdoctask'
+rdoc_task_type = begin
+  require 'rdoc/task'
+  RDoc::Task
+rescue LoadError
+  require 'rake/rdoctask'
+  Rake::RDocTask
+end
 df = begin; require 'rdoc/generator/darkfish'; true; rescue LoadError; end
-rdtask = Rake::RDocTask.new do |rd|
+rdtask = rdoc_task_type.new do |rd|
   rd.title = spec.name
   rd.main = spec.extra_rdoc_files.first
   lib_rexp = spec.require_paths.map { |p| Regexp.escape p }.join('|')
