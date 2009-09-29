@@ -102,7 +102,8 @@ task :tag do
   end
 end
 
-desc "Release #{gem_task.gem_file} to rubyforge"
+desc "Release #{gem_task.gem_file} to rubyforge and gemcutter"
 task :release => [:tag, :gem, :publish] do |t|
   sh "rubyforge add_release #{spec.rubyforge_project} #{spec.name} #{spec.version} #{gem_task.package_dir}/#{gem_task.gem_file}"
+  sh "gem push #{gem_task.package_dir}/#{gem_task.gem_file}"
 end
