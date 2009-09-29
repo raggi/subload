@@ -28,7 +28,11 @@ module Subload
   # use a custom loading mode
   def subload_with(mode = nil)
     @_subload_mode = mode unless mode.nil?
-    MODES[Subload.override_mode || @_subload_mode || Subload.default_mode]
+    MODES[
+      Subload.override_mode ||
+      (defined?(@_subload_mode) && @_subload_mode) ||
+      Subload.default_mode
+    ]
   end
 
   # Load the given constant name from the path corresponding to the
