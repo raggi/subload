@@ -20,7 +20,7 @@ double requires. Lets not do that. :-)
   s.email = ["raggi@rubyforge.org"]
   s.extra_rdoc_files = ["Manifest.txt", "CHANGELOG.rdoc", "README.rdoc"]
   s.files = ["CHANGELOG.rdoc", "Manifest.txt", "README.rdoc", "Rakefile", "examples/a.rb", "examples/a/foo.rb", "examples/a/foo/bar.rb", "examples/a/foo/baz.rb", "examples/rails/loader.rb", "lib/subload.rb", "subload.gemspec", "test/test_subload.rb", "test/test_subload/a.rb", "test/test_subload/b.rb", "test/test_subload/c.rb", "test/test_subload/d.rb", "test/test_subload/e.rb", "test/test_subload/f.rb", "test/test_subload/f/a.rb"]
-  s.homepage = %q{gem: http://gemcutter.org/gems/subload}
+  s.homepage = %q{http://rubygems.org/gems/subload}
   s.rdoc_options = ["--main", "README.rdoc"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{libraggi}
