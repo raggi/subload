@@ -25,4 +25,3 @@ end
 
 task :package => gem_spec_file
 task :check_manifest => gem_spec_file
-task :default => gem_spec_file
