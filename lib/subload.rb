@@ -62,7 +62,7 @@ module Subload
     subload_with(mode)[self, symbol, path, options]
   end
 
-  LONG_UPPER_CONSTS = [/([A-Z]+)([A-Z][a-z]+)/, '\1_\2']
+  LONG_UPPER_CONSTS = [/([A-Z\d]+)([A-Z][a-z]+)/, '\1_\2']
   TAIL_UPPER_CONSTS = [/([a-z])([A-Z])/, '\1_\2']
   DOUBLE_UNDERSCORE = '__'
   DOUBLE_COLON = '::'

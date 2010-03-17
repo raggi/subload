@@ -68,4 +68,10 @@ class TestSubload < Test::Unit::TestCase
     assert_equal("Module", Module.__name__)
   end
 
+  def test_to_path
+    assert_equal 'c2c2_api', Subload.to_path('C2C2Api')
+    assert_equal '123_api', Subload.to_path('123Api')
+    assert_equal 'http_error', Subload.to_path('HTTPError')
+    assert_equal 'no_method_error', Subload.to_path('NoMethodError')
+  end
 end
