@@ -1,0 +1,7 @@
+=== 1.1.0 / 2010-03-17
+
+* 1 major enhancement
+
+  * Moved to Hoe
+  * Modification from coderrr to support C2C2Api -> c2c2_api
+

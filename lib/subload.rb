@@ -1,5 +1,7 @@
 # TODO convert to yardoc
 module Subload
+  VERSION = '1.1.0'
+
   # To add modes to subload, simply add them to this hash. Please use the
   # a namespace convention, starting with +:projectname_operationdescription+.
   MODES = {
