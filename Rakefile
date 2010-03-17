@@ -14,6 +14,7 @@ hoe = Hoe.spec 'subload' do
   self.rubyforge_name   = 'libraggi'
 end
 
+# TODO  make a plugin to deal with this
 gem_spec_file = hoe.spec.name + '.gemspec'
 version_file = %Q{lib/#{hoe.spec.name}.rb}
 
