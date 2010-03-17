@@ -1,6 +1,6 @@
 = subload
 
-* gem: http://gemcutter.org/gems/subload
+* http://rubygems.org/gems/subload
 * docs: http://libraggi.rubyforge.org/subload/
 * source: http://github.com/raggi/subload/
 * issues: http://github.com/raggi/subload/issues
